@@ -1,10 +1,18 @@
 from django.shortcuts import render
 
+from dwitter.forms import DweetForm
 from dwitter.models import Profile
 
 
 def dashboard(request):
-    return render(request, "dwitter/dashboard.html")
+    if request.method == "POST":
+        form = DweetForm(request.POST)
+        if form.is_valid():
+            dweet = form.save(commit=False)
+            dweet.user = request.user
+            dweet.save()
+    form = DweetForm()
+    return render(request, "dwitter/dashboard.html", {"form": form})
 
 
 def profile_list(request):
