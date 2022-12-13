@@ -1,5 +1,5 @@
 from django import forms
-from .models import Dweet
+from dwitter.models import Dweet
 
 
 class DweetForm(forms.ModelForm):

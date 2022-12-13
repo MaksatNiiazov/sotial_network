@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import User, Group
-from .models import Profile, Dweet
+from dwitter.models import Profile, Dweet
 
 
 class ProfileInline(admin.StackedInline):
@@ -9,7 +9,6 @@ class ProfileInline(admin.StackedInline):
 
 class UserAdmin(admin.ModelAdmin):
     model = User
-    # Only display the "username" field
     fields = ["username"]
 
 
