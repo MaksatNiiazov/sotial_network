@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from dwitter.forms import DweetForm
 from dwitter.models import Profile
@@ -11,6 +11,7 @@ def dashboard(request):
             dweet = form.save(commit=False)
             dweet.user = request.user
             dweet.save()
+            return redirect("dwitter:dashboard")
     form = DweetForm()
     return render(request, "dwitter/dashboard.html", {"form": form})
 
